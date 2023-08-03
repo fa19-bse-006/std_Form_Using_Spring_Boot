@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Manage Student</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+</head>
+<body>
+<div class="container-fluid text-center">
+    <div><h2>Manage Student</h2></div>
+    <div class="mr-3">
+        <a class="h4" th:href="@{/students/new}">Add New Student</a>
+    </div>
+    <div th:if="${message}" class="alert alert-success text-center">[[${message}]]</div>
+    <div>
+        <table class="table table-bordered">
+            <thead class="thead-dark">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Father_Name</th>
+                <th>Age</th>
+                <th>Gender</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <th:block th:each="student:${studentList}">
+                <tr>
+                    <td>[[${student.id}]]</td>
+                    <td>[[${student.name}]]</td>
+                    <td>[[${student.f_name}]]</td>
+                    <td>[[${student.age}]]</td>
+                    <td>[[${student.gender}]]</td>
+                    <td>
+                        <a class="h6 mr-3" th:href="@{'/students/edit/' + ${student.id}}">Edit</a>
+                        <a class="h6" th:href="@{'/students/delete/' + ${student.id}}">Delete</a></ad>
+                    </td>
+                </tr>
+
+            </th:block>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+</body>
+</html>
